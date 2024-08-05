@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Search Form</title>
+</head>
+<body>
+    <h1>Answer fixed XSS with Flask-WTF</h1>
+    <h3>อีกทางเลือกหนึ่งคือการใช้ Flask-WTF </br>ซึ่งเป็น extension ที่ใช้สำหรับการจัดการฟอร์มใน Flask และมีการป้องกัน XSS รวมถึงการ validation อื่น ๆ</h3>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        {{ form.query.label }} {{ form.query() }}
+        <input type="submit" value="Search">
+    </form>
+</body>
+</html>

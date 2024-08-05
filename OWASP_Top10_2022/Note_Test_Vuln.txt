@@ -1,0 +1,21 @@
+
+
+7.
+curl -X POST http://localhost:5000/login -d "username=testuser&password=secret"
+
+8.
+ทดสอบการส่งข้อมูลที่ถูกต้อง:
+curl -X POST http://localhost:5000/update -d "data=This is a valid data"
+
+
+curl -X POST http://localhost:5000/update -d "data=ValidData"
+
+ทดสอบการส่งข้อมูลที่มากเกินไป:
+curl -X POST http://localhost:5000/update -d "data=$(head -c 101 </dev/urandom | tr -dc 'A-Za-z0-9')"
+
+ทดสอบการส่งข้อมูลที่เป็นค่าว่าง:
+curl -X POST http://localhost:5000/update -d "data="
+
+
+10.
+curl -X POST http://localhost:5000/fetch -d "url=http://example.com"
