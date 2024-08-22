@@ -20,7 +20,8 @@ def hash_data():
         return jsonify({"error": "No data provided"}), 400
     
     # ใช้ SHA-1 ซึ่งถือว่าไม่ปลอดภัย
-    hashed = hashlib.md5(data.encode()).hexdigest()
+    hashed = hashlib.sha256(data.encode()).hexdigest()
+    #hashed = hashlib.md5(data.encode()).hexdigest()
     return jsonify({"hashed_data": hashed})
 
 @app.errorhandler(404)
