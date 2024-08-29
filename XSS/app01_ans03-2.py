@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired
 import os
 
 app = Flask(__name__)
-#
+
 # ตั้งค่า secret_key
 app.secret_key = os.urandom(24)
 
@@ -22,3 +22,5 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+print ("Hello")
