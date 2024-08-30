@@ -7,16 +7,17 @@ app = Flask(__name__)
 def update():
     # รับข้อมูลจากผู้ใช้
     data = request.form.get('data')
-    
-    if not data:
-        return 'No data provided', 400
+
+    # ตรวจสอบความถูกต้องของข้อมูล
+    if not data or len(data) > 100:
+        return 'Invalid data', 400
 
     # เชื่อมต่อกับฐานข้อมูล SQLite
-    conn = sqlite3.connect('example08.db')
+    conn = sqlite3.connect('example08_2.db')
     cursor = conn.cursor()
 
-    # ช่องโหว่: ไม่มีการตรวจสอบหรือการกรองข้อมูล
-    cursor.execute(f"UPDATE settings SET value = '{data}' WHERE key = 'some_key'")
+    # ใช้ parameterized queries เพื่อลดความเสี่ยงจาก SQL Injection
+    cursor.execute("UPDATE settings SET value = ? WHERE key = 'some_key'", (data,))
     conn.commit()
     conn.close()
 
